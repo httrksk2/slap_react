@@ -5,12 +5,12 @@ let scorePlayer2Session = 0;
 let mistypesPlayer1Session = 0;
 let mistypesPlayer2Session = 0;
 let nextLetterTimer = null;
-const sessionDuration = 10; // セッション時間（秒）
+const sessionDuration = 20; // セッション時間（秒）
 const strategyTimeDuration = 10; // 作戦タイム（秒）
 let sessionCount = 1; // 現在のセッション番号
 let isGameActive = false; // ゲームがアクティブかどうかのフラグ
 let isInputAccepted = false; // 現在の文字に対して入力を受け付けるかどうかのフラグ
-const waitTimeAfterInput = 500; // キー入力から次の文字提示までの待ち時間（ミリ秒）
+const waitTimeAfterInput = 400; // キー入力から次の文字提示までの待ち時間（ミリ秒）
 
 document.getElementById('startButton').addEventListener('click', startGame);
 
