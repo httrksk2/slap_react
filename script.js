@@ -2,9 +2,9 @@
 
 
 const mistypePenalty = 3; // この値を変更して実験者が適切な減点数を設定
-const sessionDuration = 8; // セッション時間（秒）
-const strategyTimeDuration = 4; // 作戦タイム（秒）
-const waitTimeAfterInput = 500; // キー入力から次の文字提示までの待ち時間（ミリ秒）
+const sessionDuration = 60; // セッション時間（秒）
+const strategyTimeDuration = 30; // 作戦タイム（秒）
+const waitTimeAfterInput = 300; // キー入力から次の文字提示までの待ち時間（ミリ秒）
 
 
 
