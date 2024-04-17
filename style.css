@@ -21,11 +21,11 @@ body, html {
 }
 
 #displayLetter {
-    font-size: 100px;
+    font-size: 160px;
     height: 72px;
     font-weight: bold;
     line-height: 72px;
-    margin: 40px 0;
+    margin: 80px 0;
 }
 
 #timeLeft {
@@ -73,9 +73,51 @@ body, html {
 #copyright {
 	position: fixed;
 	bottom: 0;
+	left: 0;
+	right: 0;
 	width: 100%;
 	font-size: 0.8em;
     color: #666;
     text-align: center;
 	padding: 10px 0;
+}
+
+
+#startButton {
+    display: block;
+    margin: 0 auto;
+}
+
+
+#gameRules {
+    font-size: 1.0em;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+#rulesTooltip {
+    visibility: hidden;
+    width: 400px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -200px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+
+#gameRules:hover #rulesTooltip {
+    visibility: visible;
+    opacity: 1;
 }
