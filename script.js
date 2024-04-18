@@ -18,6 +18,9 @@ const sessionDuration = 60; // セッション時間（秒）
 const strategyTimeDuration = 30; // 作戦タイム（秒）
 const waitTimeAfterInput = 300; // キー入力から次の文字提示までの待ち時間（ミリ秒）
 
+// Google Apps ScriptのウェブアプリケーションURL（ユーザー自身で設定してください）
+const googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycbxwyP\_NetrPjbwGZSYc1JozU4R4UV94FaTgsiWNf3GjgNq-XZpQICxD80y6VLPt2WRP5w/exec';
+
 
 
 //ここまでがゲームの設定
@@ -337,7 +340,7 @@ function sendGameDataToGoogleSheet() {
 
 	
 	
-	fetch('https://script.google.com/macros/s/AKfycbxwyP_NetrPjbwGZSYc1JozU4R4UV94FaTgsiWNf3GjgNq-XZpQICxD80y6VLPt2WRP5w/exec', {
+	fetch(googleAppsScriptUrl, {
     method: 'POST',
     mode: 'no-cors',
     cache: 'no-cache',
