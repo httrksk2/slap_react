@@ -1,7 +1,19 @@
+/*
+Copyright (c) 2024 Keisuke Hattori
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+
 //ゲームの設定に関するパラメータ
 
 
-const mistypePenalty = 3; // この値を変更して実験者が適切な減点数を設定
+const mistypePenalty = 1; // ミスタイプX個につき1点減点
 const sessionDuration = 60; // セッション時間（秒）
 const strategyTimeDuration = 30; // 作戦タイム（秒）
 const waitTimeAfterInput = 300; // キー入力から次の文字提示までの待ち時間（ミリ秒）
@@ -254,7 +266,7 @@ function updateGameRules() {
     let penaltyText = mistypePenalty > 0 ? `しかしミスタイプは、${mistypePenalty}文字ごとにスコアを1点減点します。` : '';
     let rulesText = `ゲームルール詳細:<br>
     1. 2人でキー入力を分担し、協力して各セッション${sessionDuration}秒で、画面に現れる "S" "L" "A" "P" の文字をできるだけ速く・正確にタイプしてください。<br>
-    2. 正しく入力できた回数があなたのスコア（点）になります。${penaltyText}<br>
+    2. 正しく入力できた回数があなたのペアのスコア（点）になります。${penaltyText}<br>
     3. セッションは3回行われ、セッション間には${strategyTimeDuration}秒の作戦タイムがあります。`;
 
     document.getElementById('rulesTooltip').innerHTML = rulesText;
