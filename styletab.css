@@ -142,8 +142,8 @@ body, html {
 }
 
 .key {
-    font-size: 24px;
-    padding: 10px 20px;
+    font-size: 36px;
+    padding: 20px 40px;
     border: none;
     background-color: #eee;
     cursor: pointer;
@@ -157,5 +157,5 @@ body, html {
 }
 
 .spacer {
-    width: 180px;  /* 適宜調整してください */
+    width: 120px;  /* 適宜調整してください */
 }
