@@ -1,0 +1,58 @@
+<!--
+Copyright (c) 2024 Keisuke Hattori
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SLAP反応タスク</title>
+    <link rel="stylesheet" href="styletab.css">
+</head>
+    <body>
+    <div id="container">
+        <h2 id="pageTitle">SLAP反応タスク</h2>
+        <div id="gameRules">ゲームルール
+            <span id="rulesTooltip">
+            </span>
+        </div>
+        <div id="sessionDisplay"></div>
+        <div id="displayLetter" class="display-letter"></div>
+        <div id="countdown" style="display: none;">3</div>
+        <div id="strategyMessage"></div>
+        <div id="taskComplete"></div>
+        <div id="timeLeft"></div>
+        <div id="sessionRecords"></div>
+        <div style="text-align: center;">
+    <input type="text" id="userId1" placeholder="ユーザー1のIDを入力">
+    <input type="text" id="userId2" placeholder="ユーザー2のIDを入力">
+    <button id="confirmIdButton">ID入力後クリック</button>
+</div>
+<div>
+    <button id="startButton" style="display: none;">タスク開始</button>
+
+        <div id="virtualKeyboard">
+    <button class="key" data-key="A">A</button>
+    <button class="key" data-key="S">S</button>
+    <div class="spacer"></div>
+    <button class="key" data-key="L">L</button>
+    <button class="key" data-key="P">P</button>
+</div>
+</div>
+    <div id="copyright">
+        &copy; Keisuke Hattori, 2024
+    </div>
+<script src="scripttab.js"></script>
+</body>
+
+</html>

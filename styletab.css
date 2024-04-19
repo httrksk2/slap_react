@@ -1,0 +1,161 @@
+/*
+Copyright (c) 2024 Keisuke Hattori
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+
+body, html {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #FDFDFD;
+    color: #404040;
+}
+
+#container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#pageTitle {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#countdown {
+    font-size: 2.5em;
+    color: black;
+}
+
+#displayLetter {
+    font-size: 160px;
+    height: 72px;
+    font-weight: bold;
+    line-height: 72px;
+    margin: 80px 0;
+}
+
+#timeLeft {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#strategyMessage {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 3em;
+}
+
+#sessionRecordsTitle {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#sessionRecords {
+    margin-top: 0px;
+    font-size: 1.2em;
+    text-align: center;
+    display: none;
+    padding: 0px;
+    background-color: #FDFDFD;
+}
+
+#taskComplete {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 3em;
+    display: none;
+}
+
+#sessionDisplay {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#copyright {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	font-size: 0.8em;
+    color: #666;
+    text-align: center;
+	padding: 10px 0;
+}
+
+
+#startButton {
+    display: block;
+    margin: 0 auto;
+}
+
+
+#gameRules {
+    font-size: 1.0em;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+#rulesTooltip {
+    visibility: hidden;
+    width: 400px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -200px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+
+#gameRules:hover #rulesTooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+#virtualKeyboard {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.key {
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.key:active {
+    background-color: #ddd;
+}
+
+.spacer {
+    width: 180px;  /* 適宜調整してください */
+}
