@@ -10,20 +10,20 @@ SOFTWARE.
 */
 
 
-//Game settings parameters
+//ゲームの設定に関するパラメータ
 
 
-const mistypePenalty = 1; // 1 point deduction for every X mistyped characters
-const sessionDuration = 30; // Session duration (seconds)
-const strategyTimeDuration = 30; // Strategy time (seconds)
-const waitTimeAfterInput = 300; // Waiting time from key input to next character display (milliseconds)
+const mistypePenalty = 1; // ミスタイプX個につき1点減点
+const sessionDuration = 30; // セッション時間（秒）
+const strategyTimeDuration = 30; // 作戦タイム（秒）
+const waitTimeAfterInput = 300; // キー入力から次の文字提示までの待ち時間（ミリ秒）
 
-// Google Apps Script Web Application URL
+// Google Apps ScriptのウェブアプリケーションURL（ユーザー自身で設定してください）
 const googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycbxwyP\_NetrPjbwGZSYc1JozU4R4UV94FaTgsiWNf3GjgNq-XZpQICxD80y6VLPt2WRP5w/exec';
 
 
-//End of game settings
 
+//ここまでがゲームの設定
 
 const letters = ['S', 'L', 'A', 'P'];
 let userId1, userId2;
@@ -57,16 +57,15 @@ let isKeyPressed = false;
 
 
 
-
 document.getElementById('confirmIdButton').addEventListener('click', function() {
     userId1 = document.getElementById('userId1').value;
     userId2 = document.getElementById('userId2').value;
     const fullWidthPattern = /[^\x00-\x7F]+/;
 
     if (userId1.trim() === '' || userId2.trim() === '') {
-        alert('Please enter IDs');
+        alert('IDを入力してください。');
     } else if (fullWidthPattern.test(userId1) || fullWidthPattern.test(userId2)) {
-        alert('Please enter IDs using alphanumeric characters.');
+        alert('IDは半角英数字で入力してください。');
     } else {
         document.getElementById('userId1').style.display = 'none';
         document.getElementById('userId2').style.display = 'none';
@@ -138,8 +137,6 @@ document.addEventListener('keyup', (event) => {
 });
 
 
-
-
 function startGame() {
     document.getElementById('startButton').style.display = 'none';
     document.getElementById('countdown').style.display = 'block';
@@ -154,24 +151,24 @@ function startGame() {
 function countdown(duration, callback) {
     let counter = duration;
     const countdownElement = document.getElementById('countdown');
-    countdownElement.textContent = duration;
+    countdownElement.textContent = duration; // 最初の値として duration を表示
     const countdownTimer = setInterval(() => {
         counter--;
         if (counter <= 0) {
             clearInterval(countdownTimer);
-            countdownElement.textContent = '';
-            callback();
+            countdownElement.textContent = ''; // カウントが0になったら表示を消去
+            callback(); // コールバック関数を呼び出し
         } else {
-            countdownElement.textContent = counter;
+            countdownElement.textContent = counter; // 残り時間を更新
         }
     }, 1000);
 }
 
 function showRandomLetter() {
-    if (!isGameActive) return;
+    if (!isGameActive) return; // ゲームが非アクティブなら何もしない
     currentLetter = letters[Math.floor(Math.random() * letters.length)];
     document.getElementById('displayLetter').textContent = currentLetter;
-    isInputAccepted = true;
+    isInputAccepted = true; // 新しい文字が表示されたので入力を受け付ける
 }
 
 function resetNextLetterTimer() {
@@ -195,7 +192,7 @@ function beginSession() {
     document.getElementById('strategyMessage').style.display = 'none';
     document.getElementById('taskComplete').style.display = 'none';
     
-    
+    // リセットスコアとミスタイプカウンター
     correctResponsesPlayer1Session = 0;
     correctResponsesPlayer2Session = 0;
     mistypesPlayer1Session = 0;
@@ -215,13 +212,13 @@ function endSession() {
     recordSessionResults();
     sessionCount++;
     if (sessionCount < 4) {
-        document.getElementById('strategyMessage').innerHTML = `${strategyTimeDuration} sec strategy time for the team.<br>The next session will start as soon as the countdown reaches zero.`;
+        document.getElementById('strategyMessage').innerHTML = `${strategyTimeDuration} 秒間の作戦タイムです。<br>次のセッションはカウントダウンが 0 になると同時に開始されます。`;
         document.getElementById('strategyMessage').style.display = 'block';
         countdown(strategyTimeDuration, beginSession);
     } else {
         document.getElementById('countdown').style.display = 'none';
         document.getElementById('strategyMessage').style.display = 'none';
-        document.getElementById('taskComplete').innerHTML = 'The task is now complete. Please keep the screen as it is.<br>Thank you.';
+        document.getElementById('taskComplete').innerHTML = 'タスクはこれで終了です。画面をそのままにお待ちください。<br>ありがとうございました。';
 		document.getElementById('taskComplete').style.display = 'block';
 		sendGameDataToGoogleSheet();
     }
@@ -236,12 +233,12 @@ function recordSessionResults() {
     const totalScoreSession = totalCorrectResponsesSession - Math.floor(totalMistypesSession / mistypePenalty);
 
     const sessionRecordsElement = document.getElementById('sessionRecords');
-    const sessionRecord = `Session ${sessionCount}: Correct Responses ${totalCorrectResponsesSession}; Mistypes ${totalMistypesSession}; Score ${totalScoreSession};`;
+    const sessionRecord = `セッション ${sessionCount}: 正答数 ${totalCorrectResponsesSession}; ミスタイプ ${totalMistypesSession}; スコア ${totalScoreSession};`;
 
     if (sessionCount === 1) {
         const sessionRecordsTitleElement = document.createElement('div');
         sessionRecordsTitleElement.id = 'sessionRecordsTitle';
-        sessionRecordsTitleElement.innerHTML = `Session Records (ID: ${userId1} and ${userId2})`;
+        sessionRecordsTitleElement.innerHTML = `各セッションの記録 (ID: ${userId1} and ${userId2})`;
         document.getElementById('container').insertBefore(sessionRecordsTitleElement, sessionRecordsElement);
 
         correctResponsesPlayer1Session1 = correctResponsesPlayer1Session;
@@ -272,10 +269,11 @@ function recordSessionResults() {
 
 
 function updateGameRules() {
-	let penaltyText = mistypePenalty > 0 ? `However, for every ${mistypePenalty} mistypes, your score will be deducted by 1 point.` : '';
-    let rulesText = `Detailed Game Rules:<br>
-    1. Players will work in pairs, with the player seated on the left (id1) responsible for typing the keys A and S, while the player on the right (id2) will type the keys L and P. Your task is to type the letters S, L, A, and P that appear on the screen as quickly and accurately as possible.<br>
-	2. Your score will be based on the number of times you correctly react to the displayed letters. ${penaltyText}<br>     3. Each session lasts for ${sessionDuration} seconds, and there will be a total of 3 sessions. Between each session, there will be a ${strategyTimeDuration}-second strategy time for you and your partner to discuss and plan your approach.`;
+    let penaltyText = mistypePenalty > 0 ? `しかしミスタイプは、${mistypePenalty}文字ごとにスコアを1点減点します。` : '';
+    let rulesText = `ゲームルール詳細:<br>
+    1. 2人でキー入力を分担し、協力して各セッション${sessionDuration}秒で、画面に現れる "S" "L" "A" "P" の文字をできるだけ速く・正確にタイプしてください。<br>
+    2. 正しく入力できた回数があなたのペアのスコア（点）になります。${penaltyText}<br>
+    3. セッションは3回行われ、セッション間には${strategyTimeDuration}秒の作戦タイムがあります。`;
 
     document.getElementById('rulesTooltip').innerHTML = rulesText;
 }
@@ -295,7 +293,7 @@ document.getElementById('gameRules').addEventListener('mouseout', function() {
 
 function updateSessionDisplay() {
     const sessionDisplayElement = document.getElementById('sessionDisplay');
-    sessionDisplayElement.textContent = `Session ${sessionCount}`;
+    sessionDisplayElement.textContent = `セッション ${sessionCount}`;
 }
 
 
