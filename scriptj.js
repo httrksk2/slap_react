@@ -14,7 +14,7 @@ SOFTWARE.
 
 
 const mistypePenalty = 1; // ミスタイプX個につき1点減点
-const sessionDuration = 30; // セッション時間（秒）
+const sessionDuration = 45; // セッション時間（秒）
 const strategyTimeDuration = 30; // 作戦タイム（秒）
 const waitTimeAfterInput = 300; // キー入力から次の文字提示までの待ち時間（ミリ秒）
 
