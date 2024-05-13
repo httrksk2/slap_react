@@ -14,7 +14,7 @@ SOFTWARE.
 
 
 const mistypePenalty = 1; // 1 point deduction for every X mistyped characters
-const sessionDuration = 30; // Session duration (seconds)
+const sessionDuration = 45; // Session duration (seconds)
 const strategyTimeDuration = 30; // Strategy time (seconds)
 const waitTimeAfterInput = 300; // Waiting time from key input to next character display (milliseconds)
 
